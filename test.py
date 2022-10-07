@@ -1,4 +1,4 @@
-"""def factorial(*args):
+def factorial(*args):
     f=1
     #print(type(args))
     for x in args:
@@ -20,9 +20,4 @@ def calc(op,n1,n2):
         return n1//n2
     else:
         print("\nEnter the valid operation.\n")
-print(f"{n1} {op} {n2} = {calc(op,n1,n2)}")"""
-
-def printAll(**kwargs):
-    for k in kwargs.keys():
-        print(k,"=",kwargs[k],end='\t')
-printAll(Akash="Bhai",Adi="Dost",Nana="Dead")
+print(f"{n1} {op} {n2} = {calc(op,n1,n2)}")
