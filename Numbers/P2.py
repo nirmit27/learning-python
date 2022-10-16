@@ -1,3 +1,5 @@
+#Checking for Prime number
+
 a = int(input('Enter the number:\t'))
 def primeOrNot(a):
 	if a>1:

@@ -1,4 +1,5 @@
-# Accepting an input from the user
+# Checking for Even/Odd number
+
 num = int(input("Enter any number: "))
 
 def OddOrEven(num):

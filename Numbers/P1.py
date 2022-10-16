@@ -1,3 +1,5 @@
+#Checking for Armstrong Number
+
 sum=0 # initialise to an integer value
 num=(input('Enter the number:	'))
 l=len(num) 	# no. of digits

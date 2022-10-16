@@ -1,2 +1,3 @@
 # https---github.com-nirmit27-Py-Py
-Some Python stuff.
+Nesting dir. has some pattern programs.
+Numbers dir. has some programs to check properties of numbers.
