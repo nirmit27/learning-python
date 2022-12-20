@@ -6,8 +6,6 @@
 
 import time as t
 
-# start = t.time()
-
 rows = int(input("Enter the number of rows : "))
 
 start = t.time()
