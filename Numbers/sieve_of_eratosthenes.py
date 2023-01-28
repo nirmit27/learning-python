@@ -1,5 +1,5 @@
-# Finding all prime numbers less than an upper limit using the Sieve of Eratosthenes
-# Time Complexity : O(nlog(log n))
+# Finding all prime numbers less than an upper limit using the Sieve of Eratosthenes algorithm.
+# Time Complexity : O(sqrt(n) log(log n))
 
 def soe(n):
     prime = [True for i in range(n+1)]
@@ -19,5 +19,8 @@ def soe(n):
 if __name__ == "__main__":
     n = int(input("\n Enter a number : "))
     print(
-        f"\n All the prime numbers LESS than or EQUAL to {n} are as follows : ")
+        f"\n All the prime numbers LESS than or EQUAL to {n} are as follows : \n")
     soe(n)
+    print("\n")
+
+# The above algorithm takes sqrt(10)*(log2 log2 (10)) = 5 steps.
