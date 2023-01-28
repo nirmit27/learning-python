@@ -10,8 +10,8 @@ def merge_sort(li):
     else:
         # Partioning
         mid = len(li)//2
-        left = merge_sort(li[mid:])
-        right = merge_sort(li[:mid])
+        left = merge_sort(li[:mid])
+        right = merge_sort(li[mid:])
 
         # Merging
         i, j, k = 0, 0, 0
