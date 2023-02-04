@@ -8,7 +8,7 @@ def merge_sort(li):
         return li
 
     else:
-        # Partioning
+        # Partitioning
         mid = len(li)//2
         left = merge_sort(li[:mid])
         right = merge_sort(li[mid:])
