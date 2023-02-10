@@ -13,7 +13,7 @@ class Library(mgmt):
                     auth, books = line.split(',')
                     i += 1
                     print(
-                        f' {i}. Author Name : {auth} \n    Available Books : {books}')
+                        f' {i}. Author Name : {auth.title()} \n    Available Books : {books.title()}')
             else:
                 print(" The library is currently empty!")
 
@@ -22,11 +22,12 @@ class Library(mgmt):
         with open('lib.txt') as f:
             self.lines = f.readlines()
         if len(self.lines):
-            if a != '' and b != '':
+            if a != '' and b == '':
                 for line in self.lines:
-                    if a.title() in line:
-                        books = line.lstrip(f'{a.lower()}')
-                        print(f'\n Books available from {a} :\n {books}')
+                    if a.lower() in line:
+                        books = line.lstrip(f',{a.lower()}')
+                        print(
+                            f'\n Books available from {a} :\n {books.title()}')
                         flag = 1
                 if flag == 0:
                     print(
@@ -40,19 +41,18 @@ class Library(mgmt):
                         print("\n Okay, thank you.\n")
             elif b != '' and a == '':
                 for line in self.lines:
-                    if b.title() in line and occurence == 'first':
+                    if b.lower() in line and occurence == 'first':
                         a = line.split(',')
-                        print(f"\n Author of this books is : {a[0]}\n")
+                        print(f"\n Author of this book is : {a[0].title()}")
                         flag = 1
                         break
-                    elif b.title() in line and occurence == 'all':
+                    elif b.lower() in line and occurence == 'all':
                         a = line.split(',')
-                        print(f"\n Author of this book is : {a[0]}\n")
+                        print(f"\n Author of this book is : {a[0].title()}\n")
                         flag = 1
-                if flag:
-                    print(
-                        "\n This book isn't present in the library.\n Do you want to add it to the library? (Y/N) : ")
-                    ch = input().lower()
+                if flag == 0:
+                    ch = input(
+                        "\n This book isn't present in the library.\n Do you want to add it to the library? (Y/N) : ").lower()
                     match ch:
                         case 'y':
                             a = input('\n Enter the name of the author : ')
