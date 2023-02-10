@@ -5,9 +5,6 @@ class Management:
     This class contains methods for the management of the library.
     '''
 
-    def __init__(self):
-        pass
-
     def update(self, b: str, a: str, d=0):
         '''
         For adding new books by the same author ...

@@ -35,7 +35,7 @@ class Library(mgmt):
                     ch = input().lower()
                     if ch == 'y':
                         book = input(
-                            '\n Enter the name of the book written by  the author :')
+                            '\n Enter the name of the book written by the author : ')
                         super().add(book.lower(), a.lower())
                     else:
                         print("\n Okay, thank you.")
