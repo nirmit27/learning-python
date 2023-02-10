@@ -25,7 +25,7 @@ class Library(mgmt):
             if a != '' and b == '':
                 for line in self.lines:
                     if a.lower() in line:
-                        books = line.lstrip(f',{a.lower()}')
+                        books = line.lstrip(f'{a.lower()},')
                         print(
                             f'\n Books available from {a} :\n {books.title()}')
                         flag = 1
