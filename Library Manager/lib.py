@@ -38,7 +38,7 @@ class Library(mgmt):
                             '\n Enter the name of the book written by  the author :')
                         super().add(book.lower(), a.lower())
                     else:
-                        print("\n Okay, thank you.\n")
+                        print("\n Okay, thank you.")
             elif b != '' and a == '':
                 for line in self.lines:
                     if b.lower() in line and occurence == 'first':
@@ -58,6 +58,6 @@ class Library(mgmt):
                             a = input('\n Enter the name of the author : ')
                             super().add(b.lower(), a.lower())
                         case _:
-                            print("\n Okay, thank you.\n")
+                            print("\n Okay, thank you.")
         else:
             print(" The library is currently empty!")

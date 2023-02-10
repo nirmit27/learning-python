@@ -4,7 +4,10 @@ class Management:
     '''
     This class contains methods for the management of the library.
     '''
-    @classmethod
+
+    def __init__(self):
+        pass
+
     def update(self, b: str, a: str, d=0):
         '''
         For adding new books by the same author ...
@@ -20,11 +23,12 @@ class Management:
                 for entry in entries:
                     i = entries.index(entry)
                     if d == 0:
-                        if self.author in entry and self.book not in entry:
+                        if self.author not in entry and self.book not in entry:
                             temp = entry.rstrip('\n') + f" {self.book}\n"
                             break
                         else:
-                            print("\n {self.book} already in the records!\n")
+                            print(
+                                f"\n {self.book} is already in the records!\n")
                             break
                     else:
 
@@ -41,7 +45,6 @@ class Management:
         except:
             print("\n The library doesn't exist!\n")
 
-    @classmethod
     def add(self, b, a):
         '''
         For adding new books by the different authors ...
@@ -51,13 +54,13 @@ class Management:
         flag = 0
         try:
             with open('lib.txt', 'a+') as f:
-                f.seek(0)
+                # f.seek(0)
                 entries = f.readlines()
 
                 # In case the library is empty ...
 
                 if len(entries) == 0:
-                    f.append(f"{self.author}, {self.book}\n")
+                    f.write(f"\n{self.author}, {self.book}")
                     print("\n Record updated succesfully!")
                 else:
                     for entry in entries:
@@ -65,7 +68,7 @@ class Management:
                             flag += 1
 
                     if flag:
-                        f.append(f"{self.author}, {self.book}\n")
+                        f.write(f"{self.author}, {self.book}\n")
                         print("\n Record updated succesfully!")
                     else:
                         f.close()
@@ -73,7 +76,6 @@ class Management:
         except:
             print("\n The library doesn't exist!\n")
 
-    @classmethod
     def delete(self, db: list = [], rn=0):
         '''
         For deleting books ...
@@ -102,7 +104,7 @@ class Management:
                     for bname in self.del_books:
                         if bname.lower() in entry:
                             temp = entry.split(',')
-                            self.update(bname, temp[0], 'yes')
+                            self.update(bname, temp[0], 1)
 
             else:
                 print("\n Incorrect index!\n")
