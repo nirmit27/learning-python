@@ -7,7 +7,7 @@ def soe(n):
     p = 2
     while p**2 <= n:
         if prime[p] == True:
-            for i in range(p*2, n+1, p):
+            for i in range(p**2, n+1, p):
                 prime[i] = False  # Sieving occurs here!
         p += 1
 
