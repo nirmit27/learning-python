@@ -75,8 +75,6 @@ if __name__ == "__main__":  # Driver
     p = input(
         f"\n{'P D F  M E R G E R'.center(55, ' ')}\n{'_'*55}\n\n Enter the folder path : ")
 
-    obj = pdf_merge(p)
-
     while True:
         try:
             ch = input(
