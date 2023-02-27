@@ -16,7 +16,7 @@ if __name__ == "__main__":
     #         f.write(name+'\n')
     #     speaker(names)
 
-    with open('Shoutouts/names.txt') as f:
+    with open('names.txt') as f:
         names = f.readlines()
         names = list(map(lambda x: x[:-1], names))
         print(names)
