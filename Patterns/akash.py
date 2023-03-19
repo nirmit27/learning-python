@@ -18,3 +18,11 @@ if __name__ == "__main__":
     print("\n The required pattern is as follows : \n")
 
     triangle(rows)
+
+# *
+# * *
+# * * *
+# * * * *
+# * * *
+# * *
+# *
