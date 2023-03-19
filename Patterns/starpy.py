@@ -96,8 +96,8 @@ while opt:
           j += 1
           continue
         else:
-          print()
           break
+      print()
   
   opt = int(input("\n Want more? (0/1)\t"))
   print("-------------------------------")
