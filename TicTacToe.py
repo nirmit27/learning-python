@@ -230,7 +230,6 @@ if __name__ == "__main__":
 
                 if checkWin(board, cl):
                     score[2] += 1
-                    displayBoard(board)
                     lossMessage()
                     gameRunning = False
 
