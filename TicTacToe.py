@@ -61,16 +61,27 @@ def possibleMoves(b, l):
 
 # ________________________ # Result Logic # ________________________ #
 
-def checkWin(b, l):
+def checkWin(b, letter):
 
-    return ((b[1] == l and b[2] == l and b[3] == l) or
-            (b[4] == l and b[5] == l and b[6] == l) or
-            (b[7] == l and b[8] == l and b[9] == l) or
-            (b[1] == l and b[4] == l and b[7] == l) or
-            (b[2] == l and b[5] == l and b[8] == l) or
-            (b[3] == l and b[6] == l and b[9] == l) or
-            (b[1] == l and b[5] == l and b[9] == l) or
-            (b[3] == l and b[5] == l and b[7] == l))
+    l = letter.upper()
+
+    return (
+        (b[1] == l and b[2] == l and b[3] == l) or
+
+        (b[4] == l and b[5] == l and b[6] == l) or
+
+        (b[7] == l and b[8] == l and b[9] == l) or
+
+        (b[1] == l and b[4] == l and b[7] == l) or
+
+        (b[2] == l and b[5] == l and b[8] == l) or
+
+        (b[3] == l and b[6] == l and b[9] == l) or
+
+        (b[1] == l and b[5] == l and b[9] == l) or
+
+        (b[3] == l and b[5] == l and b[7] == l)
+    )
 
 
 def checkDraw(b):
@@ -128,20 +139,23 @@ def getComputerMove(b, cl):
     else:
         pl = 'o'
 
-    # A copy of the Board to check for winning moves ...
-    bc = b.copy()
-
     # Check for the Computer's Winning Move ...
     for i in range(1, 10):
+        # A copy of the Board to check for winning moves ...
+        bc = b.copy()
         if bc[i] == ' ':
-            bc[i] = cl
+            bc[i] = cl.upper()
             if checkWin(bc, cl):  # DEFEAT the Player
                 return i
 
+    bc = b.copy()
+
     # Check for the Player's Winning Move ...
     for i in range(1, 10):
+        # A copy of the Board to check for winning moves ...
+        bc = b.copy()
         if bc[i] == ' ':
-            bc[i] = pl
+            bc[i] = pl.upper()
             if checkWin(bc, pl):  # BLOCK the Player
                 return i
 
