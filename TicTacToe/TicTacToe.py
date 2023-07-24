@@ -2,8 +2,14 @@
 
 from random import randint as rint
 from random import choice as rch
+from csv import DictWriter as dw
+from csv import reader
+from os.path import exists
 
 # ________________________ # Game Logic # __________________________ #
+
+# For display purposes ...
+l = '-'
 
 
 def displayBoard(b):
@@ -175,12 +181,22 @@ def getComputerMove(b, cl):
 # __________________________________________________________________ #
 
 
-# ________________________ # Driver Code # _________________________ #
+# ________________________ # DRIVER CODE # _________________________ #
 
 if __name__ == "__main__":
 
-    plays = 0
-    score = [0, 0, 0]
+    # for holding the Score Sheet ...
+    result = []
+
+    # Run, Attempts, Wins, Draws, Losses
+    scoreBoard = {"Run": 0,
+                  "Attempts": 0,
+                  "Wins": 0,
+                  "Draws": 0,
+                  "Losses": 0}
+
+    # Recording the # times the game ran ...
+    scoreBoard["Run"] += 1
 
     # Display the Board ...
     print("\n T I C  T A C  T O E ".center(33, ' '))
@@ -193,7 +209,8 @@ if __name__ == "__main__":
 
     while (game):
 
-        plays += 1
+        # Recording the number of Attempts ...
+        scoreBoard["Attempts"] += 1
 
         # Clear the Board
         for x in board.keys():
@@ -218,18 +235,21 @@ if __name__ == "__main__":
                 board[move] = pl.upper()
 
                 if checkWin(board, pl):
-                    score[0] += 1
+                    # Recording the number of Wins ...
+                    scoreBoard["Wins"] += 1
                     displayBoard(board)
                     winMessage()
                     gameRunning = False
 
                 else:
                     if checkDraw(board):
-                        score[1] += 1
+                        # Recording the number of Draws ...
+                        scoreBoard["Draws"] += 1
                         drawMessage()
                         gameRunning = False
 
                     else:
+                        # Rotating the turn ...
                         turn = 1 - turn
 
             # Computer's turn ...
@@ -241,13 +261,15 @@ if __name__ == "__main__":
                 displayBoard(board)
 
                 if checkWin(board, cl):
-                    score[2] += 1
+                    # Recording the number of Losses ...
+                    scoreBoard["Losses"] += 1
                     lossMessage()
                     gameRunning = False
 
                 else:
                     if checkDraw(board):
-                        score[1] += 1
+                        # Recording the number of Draws ...
+                        scoreBoard["Draws"] += 1
                         drawMessage()
                         gameRunning = False
 
@@ -259,5 +281,51 @@ if __name__ == "__main__":
             "\nDo you want to play again? (y/n) : ").lower() == 'y' \
             else False
 
+    # ----------------- # Displaying the Results # ----------------- #
+
+    print(f"\n\n{'S C O R E'.center(33,' ')}\n{l*33}")
+    print(f'Attempts = {scoreBoard["Attempts"]}'.center(33, ' '))
     print(
-        f"\n\n{'S C O R E'.center(33, ' ')}\n{'-'*33}\n{f'Plays = {plays}'.center(33, ' ')}\n\n Wins = {score[0]}  Draws = {score[1]}  Losses = {score[2]}\n{'-'*33}\n")
+        f'\n Wins = {scoreBoard["Wins"]}   Draws = {scoreBoard["Draws"]}  Losses = {scoreBoard["Losses"]}\n{l*33}\n')
+
+    # -------------------------------------------------------------- #
+
+    # ------------------ # Recording the Results # ----------------- #
+    
+    # Fields of the scoresheet ...
+    fields = ["Run", "Attempts", "Wins", "Draws", "Losses"]
+
+    # for the FIRST RUN, without any scoresheet ...
+    if not exists('TicTacToe/scores.csv'):
+
+        with open('TicTacToe/scores.csv', 'w+', newline='') as f:
+
+            result.append(scoreBoard)
+
+            fw = dw(f, fieldnames=fields)
+
+            fw.writeheader()
+
+            fw.writerows(result)
+
+    # for SUCCESSIVE RUNS, with a pre-existing scoresheet ...
+    else:
+
+        with open('TicTacToe/scores.csv') as f:
+
+            fr = reader(f)
+
+            # Calculate the no. of pre-existing records ...
+            l = len(list(fr))-1
+
+            # Add them to the count the total number of runs ...
+            scoreBoard["Run"] += l
+
+        # For adding the current run's score to the scoresheet ...
+        result.append(scoreBoard)
+
+        with open('TicTacToe/scores.csv', 'a', newline='') as f:
+
+            fw = dw(f, fieldnames=fields)
+
+            fw.writerow(result[len(result)-1])
