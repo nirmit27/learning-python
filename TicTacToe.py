@@ -148,8 +148,6 @@ def getComputerMove(b, cl):
             if checkWin(bc, cl):  # DEFEAT the Player
                 return i
 
-    bc = b.copy()
-
     # Check for the Player's Winning Move ...
     for i in range(1, 10):
         # A copy of the Board to check for winning moves ...
