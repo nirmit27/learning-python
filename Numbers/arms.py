@@ -9,6 +9,6 @@ while n != 0:
     sum = sum+(dig**l)  # each digit raised to total number of digits
     n = n//10
 if sum == int(num):
-    print('{} is an Armstrong number.'.format(num))
+    print(f'{num} is an Armstrong number.')
 else:
-    print('{} is not an Armstrong number'.format(num))
+    print(f'{num} is not an Armstrong number')
