@@ -18,7 +18,7 @@ def user_input_features():
         'Petal length': petal_length,
         'Petal width': petal_width
     }
-    features = pd.DataFrame(data, index=[0])
+    features = pd.DataFrame(data, index=['Parameters'])
     return features
 
 
@@ -33,8 +33,8 @@ utils.heading(title='Simple Iris Flower Prediction',
 utils.line_break(2)
 
 st.sidebar.header('User Input Parameters')
-df = user_input_features()
 
+df = user_input_features()
 st.subheader("User Input Parameters")
 st.write(df)
 
@@ -43,17 +43,21 @@ st.write(df)
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
-names = iris.target_names
 
 model = rfc()
 model.fit(X, y)
 
 prediction = model.predict(df)
-prediction_prob = pd.DataFrame(model.predict_proba(df), columns=iris.target_names, index=["Probability (in range [0, "
-                                                                                          "1])"])
+prediction_prob = pd.DataFrame(model.predict_proba(df), columns=iris.target_names, index=["Probability ( in range [0, "
+                                                                                          "1] )"])
+prediction_prob = prediction_prob.rename(columns={'setosa': 'Setosa',
+                                                  'versicolor': 'Versicolor',
+                                                  'virginica': 'Virginica'})
 
 labels = pd.DataFrame({"Flower Name": iris.target_names})
 labels["Flower Name"] = labels["Flower Name"].apply(lambda x: x.title())
+labels.reset_index(inplace=True)
+labels.set_index('index', inplace=True)
 
 # Page UI ...
 
