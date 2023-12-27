@@ -50,7 +50,7 @@ model.fit(X, y)
 
 prediction = model.predict(df)
 prediction_prob = pd.DataFrame(model.predict_proba(df), columns=iris.target_names, index=["Probability (in %)"])
-prediction_prob = (prediction_prob * 100).astype(int)
+prediction_prob = (prediction_prob * 100)
 
 # prediction = model.predict(df)
 # prediction_prob = pd.DataFrame(model.predict_proba(df), index=["Probability (in %)"])
