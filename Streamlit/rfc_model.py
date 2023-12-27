@@ -49,9 +49,13 @@ model = rfc()
 model.fit(X, y)
 
 prediction = model.predict(df)
-prediction_prob = pd.DataFrame(model.predict_proba(df), index=["Probability (in %)"])
-prediction_prob = prediction_prob.rename(columns={0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'})
-prediction_prob = (prediction_prob * 100).astype('int64')
+prediction_prob = pd.DataFrame(model.predict_proba(df), columns=iris.target_names, index=["Probability (in %)"])
+prediction_prob = (prediction_prob * 100).astype(int)
+
+# prediction = model.predict(df)
+# prediction_prob = pd.DataFrame(model.predict_proba(df), index=["Probability (in %)"])
+# prediction_prob = prediction_prob.rename(columns={0: 'Setosa', 1: 'Versicolor', 2: 'Virginica'})
+# prediction_prob = (prediction_prob * 100).astype('int64')
 
 labels = pd.DataFrame({"Flower Name": iris.target_names})
 labels["Flower Name"] = labels["Flower Name"].apply(lambda x: x.title())
