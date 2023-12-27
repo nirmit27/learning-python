@@ -25,7 +25,7 @@ def user_input_features():
 st.set_page_config(page_title="Flower Prediction", page_icon="🎴")
 
 utils.heading(title='Simple Iris Flower Prediction',
-              sub_title='This app makes predictions about the <b>type</b> of <b style="color:blue">Iris</b> '
+              sub_title='This app makes predictions about the <b>type</b> of <b style="color:#87CEEB">Iris</b> '
                         'flower.',
               title_color='lightblue'
               )
@@ -54,8 +54,8 @@ prediction_prob = prediction_prob.rename(columns={'setosa': 'Setosa',
                                                   'versicolor': 'Versicolor',
                                                   'virginica': 'Virginica'})
 
-labels = pd.DataFrame({"Flower Name": iris.target_names})
-labels["Flower Name"] = labels["Flower Name"].apply(lambda x: x.title())
+labels = pd.DataFrame({"Species Name": iris.target_names})
+labels["Species Name"] = labels["Species Name"].apply(lambda x: x.title())
 labels.reset_index(inplace=True)
 labels.set_index('index', inplace=True)
 
@@ -65,7 +65,7 @@ st.subheader("Class **labels** and their corresponding **indices**")
 st.write(labels)
 
 st.subheader("Prediction")
-st.dataframe(pd.DataFrame(labels["Flower Name"][prediction], columns=["Flower Name"]))
+st.dataframe(pd.DataFrame(labels["Species Name"][prediction], columns=["Species Name"]))
 
 st.subheader("Prediction Probability")
 st.dataframe(prediction_prob)
