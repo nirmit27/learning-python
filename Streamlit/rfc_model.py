@@ -30,7 +30,7 @@ utils.heading(title='Simple Iris Flower Prediction',
               title_color='lightblue'
               )
 
-utils.line_break(2)
+# utils.line_break(2)
 
 st.sidebar.header('User Input Parameters')
 
