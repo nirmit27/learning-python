@@ -22,7 +22,7 @@ def user_input_features():
     return features
 
 
-st.set_page_config(page_title="Flower Prediction", page_icon="🎴")
+st.set_page_config(layout="wide", page_title="Flower Prediction", page_icon="🎴")
 
 utils.heading(title='Simple Iris Flower Prediction',
               sub_title='This app makes predictions about the <b>type</b> of <b style="color:#87CEEB">Iris</b> '
@@ -35,8 +35,6 @@ utils.heading(title='Simple Iris Flower Prediction',
 st.sidebar.header('User Input Parameters')
 
 df = user_input_features()
-st.subheader("User Input Parameters")
-st.write(df)
 
 # Model fitting and Prediction ...
 
@@ -48,11 +46,11 @@ model = rfc()
 model.fit(X, y)
 
 prediction = model.predict(df)
-prediction_prob = pd.DataFrame(model.predict_proba(df), columns=iris.target_names, index=["Probability ( in range [0, "
-                                                                                          "1] )"])
+prediction_prob = pd.DataFrame(model.predict_proba(df), columns=iris.target_names, index=["Probability (in %)"])
 prediction_prob = prediction_prob.rename(columns={'setosa': 'Setosa',
                                                   'versicolor': 'Versicolor',
                                                   'virginica': 'Virginica'})
+prediction_prob = prediction_prob.apply(lambda p: round(p * 100, 2), axis=1)
 
 labels = pd.DataFrame({"Species Name": iris.target_names})
 labels["Species Name"] = labels["Species Name"].apply(lambda x: x.title())
@@ -61,11 +59,19 @@ labels.set_index('index', inplace=True)
 
 # Page UI ...
 
-st.subheader("Class **labels** and their corresponding **indices**")
-st.write(labels)
+utils.line_break(2)
+col1, padding, col2 = st.columns((10, 1, 10), gap="small")
 
-st.subheader("Prediction")
-st.dataframe(pd.DataFrame(labels["Species Name"][prediction], columns=["Species Name"]))
+with col1:
+    st.subheader("User Input Parameters")
+    st.write(df)
 
-st.subheader("Prediction Probability")
-st.dataframe(prediction_prob)
+    st.subheader("Class **labels** and their corresponding **indices**")
+    st.write(labels)
+
+with col2:
+    st.subheader("Prediction")
+    st.dataframe(pd.DataFrame(labels["Species Name"][prediction], columns=["Species Name"]))
+
+    st.subheader("Prediction Probability")
+    st.dataframe(prediction_prob)
