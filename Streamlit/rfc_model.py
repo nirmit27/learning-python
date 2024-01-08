@@ -22,22 +22,23 @@ def user_input_features():
     return features
 
 
+# Page Config ...
 st.set_page_config(layout="wide", page_title="Flower Prediction", page_icon="🎴")
 
 utils.heading(title='Simple Iris Flower Prediction',
               sub_title='This app makes predictions about the <b>type</b> of <b style="color:#87CEEB">Iris</b> '
-                        'flower.',
-              title_color='lightblue'
+                        'flower.<br>Use the the <b '
+                        'style="color:#87CEEB">sliders</b> on the '
+                        'sidebar to select the input parameters.',
+              title_color='lightblue',
+              top=50
               )
-
-# utils.line_break(2)
 
 st.sidebar.header('User Input Parameters')
 
-df = user_input_features()
-
 # Model fitting and Prediction ...
 
+df = user_input_features()
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
@@ -59,8 +60,8 @@ labels.set_index('index', inplace=True)
 
 # Page UI ...
 
-utils.line_break(2)
-col1, padding, col2 = st.columns((10, 1, 10), gap="small")
+utils.line_break()
+col1, padding, col2 = st.columns((12, 4, 12), gap="small")
 
 with col1:
     st.subheader("User Input Parameters")
