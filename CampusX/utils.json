@@ -4,5 +4,5 @@
   },
   "url": "https://www.ambitionbox.com/list-of-companies?campaign=desktop_nav",
   "about_url": "https://www.ambitionbox.com/overview/{name}-overview",
-  "sql": "mysql+pymysql://root:BrunoMars_27@127.0.0.1:3306/"
+  "sql": "mysql+pymysql://root:BrunoMars_27@127.0.0.1:3306"
 }
