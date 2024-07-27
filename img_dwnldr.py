@@ -14,7 +14,7 @@ def google_downloader(keyword, op_dir, limit):
 
 
 def main():
-    limit: int = int(input("Enter the limit (preferably don't exceed 100) : "))
+    limit: int = int(input("Enter the limit (preferably don't exceed 100) : ")) or 10
     query: str = input(
         "\nEnter the keywords seperated by a space : ") or "white eggs"
     op_dir: str = input(
