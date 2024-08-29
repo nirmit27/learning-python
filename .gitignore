@@ -5,5 +5,6 @@ Library Manager/.vscode
 project1
 CampusX/utils.json
 __pycache__
-*/.env
+*.env
 *.cfg
+.idea

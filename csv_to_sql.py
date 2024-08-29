@@ -5,7 +5,6 @@ import sqlalchemy
 import pandas as pd
 from sqlalchemy import create_engine
 
-
 db_user: str = os.environ.get('USER') or ""
 db_password: str = os.environ.get('PWD') or ""
 db_host = os.environ.get('HOST') or ""
