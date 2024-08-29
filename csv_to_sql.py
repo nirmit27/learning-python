@@ -1,4 +1,4 @@
-""" Script for tranferring .csv file data to MySQL table """
+""" Script for transferring .csv file data to MySQL table """
 
 import os
 import sqlalchemy
@@ -7,11 +7,11 @@ from sqlalchemy import create_engine
 
 db_user: str = os.environ.get('USER') or ""
 db_password: str = os.environ.get('PWD') or ""
-db_host = os.environ.get('HOST') or ""
-db_port = os.environ.get('PORT') or ""
-db_name = os.environ.get('DB') or ""
-csv_file_path = os.environ.get('SRC') or ""
-table_name = os.environ.get('DEST') or ""
+db_host = os.environ.get('HOST')
+db_port: int = int(os.environ.get('PORT') or 3306)
+db_name: str = os.environ.get('DB') or ""
+csv_file_path: str = os.environ.get('SRC') or ""
+table_name: str = os.environ.get('DEST') or ""
 
 engine: sqlalchemy.engine.base.Engine = create_engine(
     f'mysql+mysqlconnector://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
