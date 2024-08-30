@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 
 db_user: str = os.environ.get('USER') or ""
 db_password: str = os.environ.get('PWD') or ""
-db_host = os.environ.get('HOST')
+db_host: str = os.environ.get('HOST') or ""
 db_port: int = int(os.environ.get('PORT') or 3306)
 db_name: str = os.environ.get('DB') or ""
 csv_file_path: str = os.environ.get('SRC') or ""
