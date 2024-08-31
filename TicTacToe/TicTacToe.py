@@ -283,7 +283,7 @@ if __name__ == "__main__":
 
     # ----------------- # Displaying the Results # ----------------- #
 
-    print(f"\n\n{'S C O R E'.center(33,' ')}\n{l*33}")
+    print(f"\n\n{'S C O R E'.center(33, ' ')}\n{l*33}")
     print(f'Attempts = {scoreBoard["Attempts"]}'.center(33, ' '))
     print(
         f'\n Wins = {scoreBoard["Wins"]}   Draws = {scoreBoard["Draws"]}  Losses = {scoreBoard["Losses"]}\n{l*33}\n')
@@ -291,7 +291,7 @@ if __name__ == "__main__":
     # -------------------------------------------------------------- #
 
     # ------------------ # Recording the Results # ----------------- #
-    
+
     # Fields of the scoresheet ...
     fields = ["Run", "Attempts", "Wins", "Draws", "Losses"]
 

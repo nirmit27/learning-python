@@ -16,14 +16,14 @@ class pdf_merge:
 
     @classmethod
     def content(cls):
-        print(f"\n{'_'*55}\n\n{'C O N T E N T S'.center(55,' ')}\n")
+        print(f"\n{'_'*55}\n\n{'C O N T E N T S'.center(55, ' ')}\n")
         for x, y in enumerate(cls.file_list, start=1):
             print(f" {x}. {y}")
         print(f"\n{'-'*55}\n")
 
     @classmethod
     def info(cls):
-        print(f"{'_'*55}\n\n{'F I L E  I N F O R M A T I O N'.center(55,' ')}\n")
+        print(f"{'_'*55}\n\n{'F I L E  I N F O R M A T I O N'.center(55, ' ')}\n")
         for x, y in enumerate(cls.file_list, start=1):
             print(f" {x}. {y}\n")
             f = pdf.PdfReader(f'{cls.path_}/{y}')  # Reader object
@@ -70,15 +70,14 @@ class pdf_merge:
         print('\n Editing complete!')
 
 
-if __name__ == "__main__":  # Driver
-
+def main() -> None:
     p = input(
         f"\n{'P D F  M E R G E R'.center(55, ' ')}\n{'_'*55}\n\n Enter the folder path : ")
 
     while True:
         try:
             ch = input(
-                f"\n{'-'*55}\n{'M A I N  M E N U'.center(55,' ')}\n{'-'*55} \n\n [1] Display PDFs\n [2] Display PDF info\n [3] Merge PDFs\n [4] Edit PDFs \n [5] Exit\n\n Enter your choice : ")
+                f"\n{'-'*55}\n{'M A I N  M E N U'.center(55, ' ')}\n{'-'*55} \n\n [1] Display PDFs\n [2] Display PDF info\n [3] Merge PDFs\n [4] Edit PDFs \n [5] Exit\n\n Enter your choice : ")
             if ch not in s.digits:
                 raise BaseException('\n Please select a valid option!')
             match int(ch):
@@ -91,7 +90,7 @@ if __name__ == "__main__":  # Driver
                     pdf_merge.merge(name)
                 case 4:
                     edit = int(input(
-                        f"\n{' M E N U '.center(55,'-')}\n\n [1] Rotate PDF\n [2] Exit\n\n >>> "))
+                        f"\n{' M E N U '.center(55, '-')}\n\n [1] Rotate PDF\n [2] Exit\n\n >>> "))
                     match edit:
                         case 1:
                             pdf_merge.rotate()
@@ -104,3 +103,7 @@ if __name__ == "__main__":  # Driver
                     print('\n Please select a valid option!')
         except BaseException as e:
             print(e.args[0])
+
+
+if __name__ == "__main__":
+    main()
